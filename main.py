@@ -30,6 +30,12 @@ def get_user_difficulty():
         diff = input("Invalid input. Please enter 1, 2, or 3: ")
     return diff
 
+def get_user_instadeath_option():
+    death = input("Play rock-paper-scissors in instadeath mode? (You will be unable to play again if you lose!) (y/n): ")
+    while death not in ["y", "n"]:
+        death = input("Invalid input. Please enter y or n: ")
+    return death
+
 def get_user_choice():
     choice = input(f"Choose one ({', '.join(player_options)}): ").lower()
     while choice not in player_options:
@@ -75,6 +81,7 @@ def play_game():
         rand.shuffle(remaining_options)
         print("You have chosen the challenge mode.")
     diff = get_user_difficulty()
+    death = get_user_get_user_instadeath_option()
     while True:
         user = get_user_choice()
         computer = get_random_choice(diff, player_options)

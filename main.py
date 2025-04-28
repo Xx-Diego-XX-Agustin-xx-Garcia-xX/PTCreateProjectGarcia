@@ -95,7 +95,6 @@ def play_game():
             print("You lose!")
         again = input("\nPlay again? (y/n): ").lower()
         if again != 'y':
-            print("Thanks for playing!")
             break
 
 def main():

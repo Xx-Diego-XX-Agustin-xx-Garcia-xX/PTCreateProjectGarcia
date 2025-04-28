@@ -1,13 +1,13 @@
 import random as rand
 
 final_options = {
-  "rock": ["scissors", "ball", "glue"],
-  "scissors": ["hand", "salt", "paper"],
-  "hand": ["ball", "glue", "rock"],
-  "ball": ["salt", "paper", "scissors"],
-  "salt": ["glue", "rock", "hand"],
-  "glue": ["paper", "scissors", "ball"],
-  "paper": ["rock", "hand", "salt"]
+    "rock": ["scissors", "ball", "glue"],
+    "scissors": ["hand", "salt", "paper"],
+    "hand": ["ball", "glue", "rock"],
+    "ball": ["salt", "paper", "scissors"],
+    "salt": ["glue", "rock", "hand"],
+    "glue": ["paper", "scissors", "ball"],
+    "paper": ["rock", "hand", "salt"]
 }
 
 # create the 3 starter options from the final_options keys
@@ -31,10 +31,10 @@ def get_user_difficulty():
     return diff
 
 def get_user_choice():
-  choice = input(f"Choose one ({', '.join(player_options)}): ").lower()
-  while choice not in player_options:
-      choice = input("Invalid choice. Try again: ").lower()
-  return choice
+    choice = input(f"Choose one ({', '.join(player_options)}): ").lower()
+    while choice not in player_options:
+        choice = input("Invalid choice. Try again: ").lower()
+    return choice
 
 def get_random_choice(diff, player_options):
     if diff == "1":
@@ -45,12 +45,12 @@ def get_random_choice(diff, player_options):
         return rand.choice(remaining_options)
 
 def determine_winner(user, computer):
-  if user == computer:
-      return "tie"
-  elif computer in final_options[user]:
-      return "win"
-  else:
-      return "lose"
+    if user == computer:
+        return "tie"
+    elif computer in final_options[user]:
+        return "win"
+    else:
+        return "lose"
 
 def play_game():
     mode = get_user_gamemode()
@@ -80,7 +80,6 @@ def play_game():
         computer = get_random_choice(diff, player_options)
         print(f"\nYou chose: {user}")
         print(f"Computer chose: {computer}")
-
         result = determine_winner(user, computer)
         if result == "tie":
             print("It's a tie!")
@@ -94,10 +93,17 @@ def play_game():
                 print("All moves unlocked!")
         else:
             print("You lose!")
-
         again = input("\nPlay again? (y/n): ").lower()
         if again != 'y':
             print("Thanks for playing!")
             break
 
-play_game()
+def main():
+    while True:
+        play_game()
+        restart = input("\nRestart the game from the beginning? (y/n): ").lower()
+        if restart != 'y':
+            print("Thanks for playing!")
+            break
+
+main()

@@ -100,7 +100,12 @@ def play_game():
                 print("All moves unlocked!")
         else:
             print("You lose!")
+            if death == 'y':
+                print("Game over!")
+                break
         again = input("\nPlay again? (y/n): ").lower()
+        while again not in ["y", "n"]:
+            again = input("Invalid input. Please enter y or n: ")
         if again != 'y':
             break
 
@@ -108,6 +113,8 @@ def main():
     while True:
         play_game()
         restart = input("\nRestart the game from the beginning? (y/n): ").lower()
+        while restart not in ["y", "n"]:
+            restart = input("Invalid input. Please enter y or n: ")
         if restart != 'y':
             print("Thanks for playing!")
             break

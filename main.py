@@ -81,7 +81,7 @@ def play_game():
         rand.shuffle(remaining_options)
         print("You have chosen the challenge mode.")
     diff = get_user_difficulty()
-    death = get_user_get_user_instadeath_option()
+    death = get_user_instadeath_option()
     while True:
         user = get_user_choice()
         computer = get_random_choice(diff, player_options)

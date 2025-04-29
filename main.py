@@ -10,10 +10,8 @@ final_options = {
     "paper": ["rock", "hand", "salt"]
 }
 
-# create the 3 starter options from the final_options keys
 player_options = rand.sample(list(final_options.keys()), 3)
 
-# create the remaining options from the final_options keys
 remaining_options = [move for move in final_options if move not in player_options]
 rand.shuffle(remaining_options)
 

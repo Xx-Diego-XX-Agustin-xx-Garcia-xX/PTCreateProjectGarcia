@@ -37,7 +37,7 @@ def get_user_instadeath_option():
 def get_user_choice():
     choice = input(f"Choose one ({', '.join(player_options)}): ").lower()
     while choice not in player_options:
-        choice = input("Invalid choice. Try again: ").lower()
+        choice = input("Invalid input. Try again: ").lower()
     return choice
 
 def get_random_choice(diff, player_options):

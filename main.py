@@ -17,15 +17,15 @@ rand.shuffle(remaining_options)
 
 def get_user_gamemode():
     print("Welcome to my Create PT project. This is a game of rock-paper-scissors, with a twist.")
-    mode = input("Please choose a game mode: \n1. Classic (rock, paper, scissors; no unlocks) \n2. Expanded (rock, paper, scissors; unlocks new moves each time you win) \n3. Randomized (randomized set of 3 options; no unlocks) \n4. Challenge (randomized set of 3 options; unlocks new moves each time you win)")
-    while mode not in ["1", "2", "3", "4"]:
-        mode = input("Invalid input. Please enter 1, 2, 3, or 4: ")
+    mode = input("Please choose a game mode: \n1. Classic (rock, paper, scissors; no unlocks) \n2. Expanded (rock, paper, scissors; unlocks new moves each time you win) \n3. Randomized (randomized set of 3 options; no unlocks) \n4. Challenge (randomized set of 3 options; unlocks new moves each time you win) \n")
+    while mode not in ["1", "2", "3", "4", "Classic", "Expanded", "Randomized", "Challenge"]:
+        mode = input("Invalid input. Please enter 1, 2, 3, 4, or the names of the difficulties: ")
     return mode
 
 def get_user_difficulty():
-    diff = input("Please choose a difficulty: \n1. Easy (computer chooses from your options) \n2. Medium (computer chooses from all options) \n3. Hard (computer chooses from all options excluding your options)")
-    while diff not in ["1", "2", "3"]:
-        diff = input("Invalid input. Please enter 1, 2, or 3: ")
+    diff = input("Please choose a difficulty: \n1. Normal (computer chooses from your options) \n2. Medium (computer chooses from all options) \n3. Hard (computer chooses from all options excluding your options) \n")
+    while diff not in ["1", "2", "3", "Normal", "Medium", "Hard"]:
+        diff = input("Invalid input. Please enter 1, 2, 3, or the names of the difficulties: ")
     return diff
 
 def get_user_instadeath_option():
@@ -53,9 +53,9 @@ def get_user_choice():
     return choice
 
 def get_random_choice(diff, player_options):
-    if diff == "1":
+    if (diff == "1") or (diff == "Normal"):
         return rand.choice(player_options)
-    elif diff == "2":
+    elif (diff == "2") or (diff == "Medium"):
         return rand.choice(list(final_options.keys()))
     else:
         return rand.choice(remaining_options)
@@ -74,16 +74,16 @@ def play_game():
     mode = get_user_gamemode()
     global player_options
     global remaining_options
-    if mode == "1":
+    if (mode == "1") or (mode == "Classic"):
         player_options = ["rock", "paper", "scissors"]
         remaining_options = []
         print("You have chosen the classic mode.")
-    elif mode == "2":
+    elif (mode == "2") or (mode == "Expanded"):
         player_options = ["rock", "paper", "scissors"]
         remaining_options = ["hand", "ball", "salt", "glue"]
         rand.shuffle(remaining_options)
         print("You have chosen the expanded mode.")
-    elif mode == "3":
+    elif (mode == "3") or (mode == "Randomized"):
         player_options = rand.sample(list(final_options.keys()), 3)
         remaining_options = []
         print("You have chosen the randomized mode.")

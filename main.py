@@ -108,7 +108,6 @@ def play_game():
                 print(f"Tie broken randomly as {result}")
             else:
                 print("It's a tie!")
-                continue
         if result == "win":
             print("You win!")
             points += 1

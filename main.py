@@ -41,7 +41,7 @@ def get_user_deathscore_option():
     return score
 
 def get_user_quickdraw_option():
-    quick = input("Play in quickdraw mode? (Each tie is randomly chosen as a win or loss. (y/n): ")
+    quick = input("Play in quickdraw mode? (Each tie is randomly chosen as a win or loss.) (y/n): ")
     while quick not in ["y", "n"]:
         quick = input("Invalid input. Please enter y or n: ")
     return quick
@@ -106,8 +106,6 @@ def play_game():
             if quick == 'y':
                 result = rand.choice(["win", "lose"])
                 print(f"Tie broken randomly as {result}")
-                print(f"Your current score: {points}")
-                print(f"Your current lives: {lives}")
             else:
                 print("It's a tie!")
         elif result == "win":
@@ -115,7 +113,7 @@ def play_game():
             points += 1
             print(f"Your current score: {points}")
             print(f"Your current lives: {lives}")
-            if remaining_options:
+            if remaining_options and mode in ["2", "4"]:
                 new_move = remaining_options.pop()
                 player_options.append(new_move)
                 print(f"New move unlocked: {new_move}!")
@@ -129,7 +127,7 @@ def play_game():
                 points -= 1
             print(f"Your current score: {points}")
             print(f"Your current lives: {lives}")
-            if (death == 'y') or (lives == 0) or (points == -1):
+            if (death == 'y') or (lives == 0) or (points < 0):
                 print("Game over!")
                 print(f"Final score: {points} point(s)")
                 break

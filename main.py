@@ -29,16 +29,22 @@ def get_user_difficulty():
     return diff
 
 def get_user_instadeath_option():
-    death = input("Play in instadeath mode? (You will be unable to play again if you lose!) (y/n): ")
+    death = input("Play in instadeath mode? (You will be unable to play again if you lose.) (y/n): ")
     while death not in ["y", "n"]:
         death = input("Invalid input. Please enter y or n: ")
     return death
 
-def get_user_scoreloss_option():
-    loss = input("Play in scoreloss mode? (Each loss results in a score decrease.) (y/n): ")
-    while loss not in ["y", "n"]:
-        loss = input("Invalid input. Please enter y or n: ")
-    return loss
+def get_user_deathscore_option():
+    score = input("Play in deathscore mode? (Each loss results in a score decrease; if your score reaches 0, you will be unable to play again if you have a negative score.) (y/n): ")
+    while score not in ["y", "n"]:
+        score = input("Invalid input. Please enter y or n: ")
+    return score
+
+def get_user_quickdraw_option():
+    quick = input("Play in quickdraw mode? (Each tie is randomly chosen as a win or loss. (y/n): ")
+    while quick not in ["y", "n"]:
+        quick = input("Invalid input. Please enter y or n: ")
+    return quick
 
 def get_user_choice():
     choice = input(f"Choose one ({', '.join(player_options)}): ").lower()
@@ -88,7 +94,8 @@ def play_game():
         print("You have chosen the challenge mode.")
     diff = get_user_difficulty()
     death = get_user_instadeath_option()
-    loss = get_user_scoreloss_option()
+    score = get_user_deathscore_option()
+    quick = get_user_quickdraw_option()
     while True:
         user = get_user_choice()
         computer = get_random_choice(diff, player_options)
@@ -96,11 +103,15 @@ def play_game():
         print(f"Computer chose: {computer}")
         result = determine_winner(user, computer)
         if result == "tie":
-            print("It's a tie!")
+            if quick == 'y':
+                result = rand.choice(["win", "lose"])
+                print(f"Tie broken randomly as {result}")
+            else:
+                print("It's a tie!")
         elif result == "win":
             print("You win!")
             points += 1
-            print(f"Your current points: {points}")
+            print(f"Your current score: {points}")
             print(f"Your current lives: {lives}")
             if remaining_options:
                 new_move = remaining_options.pop()
@@ -111,10 +122,10 @@ def play_game():
         else:
             print("You lose!")
             lives -= 1
-            if loss == 'y':
+            if score == 'y':
                 lives += 1
                 points -= 1
-            print(f"Your current points: {points}")
+            print(f"Your current score: {points}")
             print(f"Your current lives: {lives}")
             if (death == 'y') or (lives == 0) or (points == -1):
                 print("Game over!")

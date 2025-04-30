@@ -104,7 +104,7 @@ def play_game():
             print("You lose!")
             lives -= 1
             print(f"Your current lives: {lives}")
-            if (death == 'y') OR (lives == 0):
+            if (death == 'y') or (lives == 0):
                 print("Game over!")
                 print(f"Final score: {points} point(s)")
                 break

@@ -121,7 +121,7 @@ def play_game():
                 print(f"New move unlocked: {new_move}!")
             else:
                 print("All moves unlocked!")
-        else:
+        elif result == "lose":
             print("You lose!")
             lives -= 1
             if score == 'y':

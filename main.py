@@ -57,6 +57,7 @@ def determine_winner(user, computer):
         return "lose"
 
 def play_game():
+    lives = 5
     points = 0
     mode = get_user_gamemode()
     global player_options
@@ -101,7 +102,9 @@ def play_game():
                 print("All moves unlocked!")
         else:
             print("You lose!")
-            if death == 'y':
+            lives -= 1
+            print(f"Your current lives: {lives}")
+            if (death == 'y') OR (lives == 0):
                 print("Game over!")
                 print(f"Final score: {points} point(s)")
                 break

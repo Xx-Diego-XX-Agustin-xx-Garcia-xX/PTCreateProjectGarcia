@@ -106,6 +106,8 @@ def play_game():
             if quick == 'y':
                 result = rand.choice(["win", "lose"])
                 print(f"Tie broken randomly as {result}")
+                print(f"Your current score: {points}")
+                print(f"Your current lives: {lives}")
             else:
                 print("It's a tie!")
         elif result == "win":

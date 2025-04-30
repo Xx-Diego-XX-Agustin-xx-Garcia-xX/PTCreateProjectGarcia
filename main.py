@@ -29,10 +29,16 @@ def get_user_difficulty():
     return diff
 
 def get_user_instadeath_option():
-    death = input("Play rock-paper-scissors in instadeath mode? (You will be unable to play again if you lose!) (y/n): ")
+    death = input("Play in instadeath mode? (You will be unable to play again if you lose!) (y/n): ")
     while death not in ["y", "n"]:
         death = input("Invalid input. Please enter y or n: ")
     return death
+
+def get_user_scoreloss_option():
+    loss = input("Play in scoreloss mode? (Each loss results in a score decrease.) (y/n): ")
+    while loss not in ["y", "n"]:
+        loss = input("Invalid input. Please enter y or n: ")
+    return loss
 
 def get_user_choice():
     choice = input(f"Choose one ({', '.join(player_options)}): ").lower()
@@ -82,6 +88,7 @@ def play_game():
         print("You have chosen the challenge mode.")
     diff = get_user_difficulty()
     death = get_user_instadeath_option()
+    loss = get_user_scoreloss_option()
     while True:
         user = get_user_choice()
         computer = get_random_choice(diff, player_options)
@@ -94,6 +101,7 @@ def play_game():
             print("You win!")
             points += 1
             print(f"Your current points: {points}")
+            print(f"Your current lives: {lives}")
             if remaining_options:
                 new_move = remaining_options.pop()
                 player_options.append(new_move)
@@ -103,8 +111,12 @@ def play_game():
         else:
             print("You lose!")
             lives -= 1
+            if loss == 'y':
+                lives += 1
+                score -= 1
+            print(f"Your current points: {points}")
             print(f"Your current lives: {lives}")
-            if (death == 'y') or (lives == 0):
+            if (death == 'y') or (lives == 0) or (score == -1):
                 print("Game over!")
                 print(f"Final score: {points} point(s)")
                 break

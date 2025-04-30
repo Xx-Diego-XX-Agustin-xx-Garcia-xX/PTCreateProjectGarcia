@@ -109,7 +109,7 @@ def play_game():
             else:
                 print("It's a tie!")
                 continue
-        elif result == "win":
+        if result == "win":
             print("You win!")
             points += 1
             print(f"Your current score: {points}")

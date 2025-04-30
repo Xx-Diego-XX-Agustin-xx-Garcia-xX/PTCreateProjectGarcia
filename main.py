@@ -57,6 +57,7 @@ def determine_winner(user, computer):
         return "lose"
 
 def play_game():
+    points = 0
     mode = get_user_gamemode()
     global player_options
     global remaining_options
@@ -90,6 +91,8 @@ def play_game():
             print("It's a tie!")
         elif result == "win":
             print("You win!")
+            points += 1
+            print(f"Your current points: {points}")
             if remaining_options:
                 new_move = remaining_options.pop()
                 player_options.append(new_move)
@@ -100,6 +103,7 @@ def play_game():
             print("You lose!")
             if death == 'y':
                 print("Game over!")
+                print(f"Final score: {points} point(s)")
                 break
         again = input("\nPlay again? (y/n): ").lower()
         while again not in ["y", "n"]:
